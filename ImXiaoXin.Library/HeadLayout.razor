@@ -1,0 +1,21 @@
+﻿
+<div class="head">
+    <a href="@HostUrl">
+        <img src="_content/ImXiaoXin.Library/images/logo_v3.png" class="head-logo" alt="Logo">
+    </a>
+    <div>
+        <p class="head-tag">@Tag</p>
+        <p class="head-tag-detail">@TagDetail</p>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string HostUrl { get; set; } = "http://imxiaoxin.cn";
+    [Parameter] public string Tag { get; set; } = "各种方便主播，房管，水友的工具站";
+    [Parameter] public string TagDetail { get; set; } = "狐狸是一种灵巧、聪明的哺乳动物，属于犬科，是一种非常聪明的夜行动物，通常在黄昏和夜晚活动。";
+
+    protected override void OnInitialized()
+    {       
+        
+    }
+}
