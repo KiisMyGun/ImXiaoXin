@@ -337,3 +337,7 @@
 .cell-label {
     line-height: 35px;
 }
+
+.layout {
+    --bb-layout-header-height: 500px;
+}
