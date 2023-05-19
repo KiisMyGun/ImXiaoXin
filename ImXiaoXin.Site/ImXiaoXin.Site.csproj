@@ -22,8 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="BootstrapBlazor" Version="7.6.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+    <PackageReference Include="BootstrapBlazor.VideoPlayer" Version="7.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,5 +32,11 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Cover\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties data_4siteroutedata_1json__JsonSchema="https://json.schemastore.org/appsettings.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

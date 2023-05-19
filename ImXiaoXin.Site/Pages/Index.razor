@@ -1,10 +1,57 @@
 ﻿@page "/"
+@using Microsoft.Extensions.Options
+@inject IOptions<List<RouteDataConfig>> RouteDataOptions
+@inject IJSRuntime JSRuntime
 
 <PageTitle>所有工具</PageTitle>
 
-
+@if (RouteDataConfigs is not null)
+{
+    foreach (var item in RouteDataConfigs)
+    {
+        <Card @onclick="()=>OpenNewTab(item.Url)">
+            <HeaderTemplate>
+                <div class="tool-card">
+                    <span class="left-card">@item.Name</span>
+                    <Toggle class="right-card" Value="ShowVideo" ValueChanged="ShowVideoChange" OnText="关闭视频教程" OffText="查看视频教程" Color="Color.Primary" />
+                </div>
+            </HeaderTemplate>
+            <BodyTemplate>
+                @if (ShowVideo)
+                {
+                    <VideoPlayer MineType="application/x-mpegURL" Url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" />
+                }
+                else
+                {
+                    <ImageViewer Url="@item.ImgUrl"
+                     FitMode="ObjectFitMode.Fill"
+                     ShowPlaceHolder=true />
+                }
+            </BodyTemplate>
+            <FooterTemplate>@item.Desc</FooterTemplate>
+        </Card>
+    }
+}
 
 @code
 {
-    
+    List<RouteDataConfig>? RouteDataConfigs { get; set; }
+
+    bool ShowVideo;
+
+    protected override void OnInitialized()
+    {
+        RouteDataConfigs = RouteDataOptions.Value;
+    }
+
+    private async Task OpenNewTab(string? url)
+    {
+        if (!string.IsNullOrEmpty(url))
+            await JSRuntime.InvokeVoidAsync("window.open", url, "_blank");
+    }
+
+    private void ShowVideoChange(bool value)
+    {
+        ShowVideo = value;
+    }
 }

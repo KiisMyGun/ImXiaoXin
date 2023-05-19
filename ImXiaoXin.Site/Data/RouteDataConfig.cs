@@ -1,15 +1,10 @@
 ﻿namespace ImXiaoXin.Site.Data
 {
     /// <summary>
-    /// 工具信息
+    /// 各个功能网站信息
     /// </summary>
-    public class ToolInfo
+    public class RouteDataConfig
     {
-        /// <summary>
-        /// 编号
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// 网站名称
         /// </summary>
@@ -26,8 +21,13 @@
         public string? Desc { get; set; }
 
         /// <summary>
+        /// 封面图地址
+        /// </summary>
+        public string? ImgUrl { get; set; }
+
+        /// <summary>
         /// 教学视频地址
         /// </summary>
-        public string? TeachingVideoUrl { get; set; }
+        public string? VideoUrl { get; set; }
     }
 }
