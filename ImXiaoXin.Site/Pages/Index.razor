@@ -15,7 +15,7 @@
             <Card @onclick="()=>OpenNewTab(item.Url)" IsShadow=true Color="colors[i]">
                 <HeaderTemplate>
                     <div class="tool-card">
-                        <span class="xiba">@item.Name</span>
+                        <span class="left-card">@item.Name</span>
                         <Toggle class="right-card" Value="ShowVideo" ValueChanged="ShowVideoChange" OnText="关闭视频教程" OffText="查看视频教程" Color="Color.Primary" />
                     </div>
                 </HeaderTemplate>

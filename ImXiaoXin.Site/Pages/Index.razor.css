@@ -3,10 +3,9 @@
     justify-content: space-between;
 }
 
-.sfddsfjidsf {
+.left-card {
     align-self: flex-start;
-    color: yellow;
-    font-size: 22px;
+    color: red;
 }
 
 .right-card {
