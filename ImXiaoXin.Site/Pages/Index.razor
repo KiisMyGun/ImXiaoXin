@@ -5,33 +5,40 @@
 
 <PageTitle>所有工具</PageTitle>
 
-@if (RouteDataConfigs is not null)
-{
-    foreach (var item in RouteDataConfigs)
+<Row ItemsPerRow="ItemsPerRow.Six">
+    @if (RouteDataConfigs is not null)
     {
-        <Card @onclick="()=>OpenNewTab(item.Url)">
-            <HeaderTemplate>
-                <div class="tool-card">
-                    <span class="left-card">@item.Name</span>
-                    <Toggle class="right-card" Value="ShowVideo" ValueChanged="ShowVideoChange" OnText="关闭视频教程" OffText="查看视频教程" Color="Color.Primary" />
-                </div>
-            </HeaderTemplate>
-            <BodyTemplate>
-                @if (ShowVideo)
-                {
-                    <VideoPlayer MineType="application/x-mpegURL" Url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" />
-                }
-                else
-                {
-                    <ImageViewer Url="@item.ImgUrl"
-                     FitMode="ObjectFitMode.Fill"
-                     ShowPlaceHolder=true />
-                }
-            </BodyTemplate>
-            <FooterTemplate>@item.Desc</FooterTemplate>
-        </Card>
+        Color[] colors = new Color[] { Color.Primary, Color.Success , Color.Danger, Color.Warning, Color.Info , Color.Dark};
+        int i = 0;
+        foreach (var item in RouteDataConfigs)
+        {
+            <Card @onclick="()=>OpenNewTab(item.Url)" IsShadow=true Color="colors[i]">
+                <HeaderTemplate>
+                    <div class="tool-card">
+                        <span class="xiba">@item.Name</span>
+                        <Toggle class="right-card" Value="ShowVideo" ValueChanged="ShowVideoChange" OnText="关闭视频教程" OffText="查看视频教程" Color="Color.Primary" />
+                    </div>
+                </HeaderTemplate>
+                <BodyTemplate>
+                    @if (ShowVideo)
+                    {
+                        <VideoPlayer Width=250 MineType="application/x-mpegURL" Url="https://www.bilibili.com/video/BV13s4y1M7y8/?spm_id_from=333.999.0.0&vd_source=513620f75c38b2fc1590969a6a1cf60d&t=00m24s" />
+                    }
+                    else
+                    {
+                        <ImageViewer Url="@item.ImgUrl"
+                         FitMode="ObjectFitMode.Fill"
+                         ShowPlaceHolder=true />
+                    }
+                </BodyTemplate>
+                <FooterTemplate>@item.Desc</FooterTemplate>
+            </Card>
+            i++;
+            if (i == colors.Length)
+                i = 0;
+        }
     }
-}
+</Row>
 
 @code
 {
