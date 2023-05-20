@@ -1,14 +1,14 @@
 {
   "RouteData": [
     {
-      "Name": "Pubg卧底1",
+      "Name": "Pubg卧底",
       "Url": "http://imxiaoxin.cn",
       "Desc": "纽约班子的一种社交推理游戏",
       "ImgUrl": "images/cover/pubg.jpg",
       "VideoUrl": "https://www.bilibili.com/video/BV1oM4y187NX/?spm_id_from=333.999.0.0&vd_source=513620f75c38b2fc1590969a6a1cf60d"
     },
     {
-      "Name": "Pubg随机组队2",
+      "Name": "Pubg随机组队",
       "Url": "http://imxiaoxin.cn",
       "Desc": "随机分配队伍工具",
       "ImgUrl": "images/cover/pubgrandom.jpg",
