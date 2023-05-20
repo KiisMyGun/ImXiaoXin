@@ -6,19 +6,28 @@
 }
 
 .head-logo {
-    margin: 10px;
-    height: 100px;
-    width: 100px;
+    margin: auto;
+    height: auto;
+    width: auto;
 }
 
 .head-tag {
     color: yellow;
     font-size: larger;
-    margin-bottom: 10px;
+    margin: auto;
 }
 
-.head-tag-detail {
-    color: white;
+@media (max-width: 600px) {
+    .head-tag-detail {
+        color: white;
+        display: none;
+    }
+
+    .head-tag {
+        color: yellow;
+        font-size: larger;
+        margin-bottom: 5%;
+    }
 }
 
 .foot {

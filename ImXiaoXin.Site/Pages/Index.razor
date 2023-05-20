@@ -4,34 +4,37 @@
 @inject IJSRuntime JSRuntime
 
 <PageTitle>所有工具</PageTitle>
-
 <Row ItemsPerRow="ItemsPerRow.Six">
     @if (RouteDataConfigs is not null)
     {
-        Color[] colors = new Color[] { Color.Primary, Color.Success , Color.Danger, Color.Warning, Color.Info , Color.Dark};
+        Color[] colors = new Color[] { Color.Primary, Color.Success, Color.Danger, Color.Warning, Color.Info, Color.Dark };
         int i = 0;
         foreach (var item in RouteDataConfigs)
         {
-            <Card @onclick="()=>OpenNewTab(item.Url)" IsShadow=true Color="colors[i]">
+            <Card IsShadow=true Color="colors[i]">
                 <HeaderTemplate>
-                    <div class="tool-card">
-                        <span class="left-card">@item.Name</span>
-                        <Toggle class="right-card" Value="ShowVideo" ValueChanged="ShowVideoChange" OnText="关闭视频教程" OffText="查看视频教程" Color="Color.Primary" />
+                    <div class="tool-card-header">
+                        <span class="name">@item.Name</span>
+                        <LinkButton TooltipText="教学视频" Url="@item.VideoUrl" Target="_blank">
+                            <i class="fas fa-eye"></i>
+                        </LinkButton>
                     </div>
                 </HeaderTemplate>
                 <BodyTemplate>
-                    @if (ShowVideo)
-                    {
-                        <VideoPlayer Width=250 MineType="application/x-mpegURL" Url="https://www.bilibili.com/video/BV13s4y1M7y8/?spm_id_from=333.999.0.0&vd_source=513620f75c38b2fc1590969a6a1cf60d&t=00m24s" />
-                    }
-                    else
-                    {
+                    <div class="tool-card-body">
                         <ImageViewer Url="@item.ImgUrl"
-                         FitMode="ObjectFitMode.Fill"
-                         ShowPlaceHolder=true />
-                    }
+                                     FitMode="ObjectFitMode.Fill"
+                                     ShowPlaceHolder=true
+                                     HandleError="true"
+                                     style="width:100%;height:100%;"
+                                     @onclick="()=>OpenNewTab(item.Url)" />
+                    </div>
                 </BodyTemplate>
-                <FooterTemplate>@item.Desc</FooterTemplate>
+                <FooterTemplate>
+                    <div class="tool-card-footer">
+                        <span class="desc">@item.Desc</span>
+                    </div>
+                </FooterTemplate>
             </Card>
             i++;
             if (i == colors.Length)
@@ -44,8 +47,6 @@
 {
     List<RouteDataConfig>? RouteDataConfigs { get; set; }
 
-    bool ShowVideo;
-
     protected override void OnInitialized()
     {
         RouteDataConfigs = RouteDataOptions.Value;
@@ -55,10 +56,5 @@
     {
         if (!string.IsNullOrEmpty(url))
             await JSRuntime.InvokeVoidAsync("window.open", url, "_blank");
-    }
-
-    private void ShowVideoChange(bool value)
-    {
-        ShowVideo = value;
     }
 }

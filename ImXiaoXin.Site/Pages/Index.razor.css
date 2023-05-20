@@ -1,13 +1,26 @@
-﻿.tool-card {
+﻿.tool-card-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.left-card {
-    align-self: flex-start;
-    color: red;
+    .tool-card-header .name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+.tool-card-body {
+    height: 180px;
 }
 
-.right-card {
-    align-self: flex-end;
+.tool-card-footer {
+    display: flex;
 }
+
+    .tool-card-footer .desc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
