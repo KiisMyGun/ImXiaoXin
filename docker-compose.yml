@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  imxiaoxin.site:
+    image: ${DOCKER_REGISTRY-}imxiaoxinsite
+    build:
+      context: .
+      dockerfile: ImXiaoXin.Site/Dockerfile
