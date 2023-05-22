@@ -1,0 +1,46 @@
+﻿@page "/"
+@using System.IO;
+@using NAudio.Wave;
+@attribute [TabItemOption(Text = "Index", Closable = false)]
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<InputUpload TValue="string" ShowDeleteButton="true" OnChange="@OnFileChange"></InputUpload>
+<CardUpload TValue="string" IsMultiple=true></CardUpload>
+
+@code
+{
+    private Task OnFileChange(UploadFile file)
+    {
+        // 未真正保存文件
+        file.SaveToFileAsync("");
+        var a = file.File!.Name;
+        System.Console.WriteLine(file.FileName);
+        System.Console.WriteLine(file.OriginFileName);
+        System.Console.WriteLine(file.PrevUrl);
+        using (var vorbisStream = new NAudio.Vorbis.VorbisWaveReader(file.GetFileName()))
+        using (var waveOut = new NAudio.Wave.WaveOutEvent())
+        {
+            waveOut.Init(vorbisStream);
+            waveOut.Play();
+
+            // wait here until playback stops or should stop
+        }
+        return Task.FromResult("");
+    }
+
+    private async Task HandleFileUpload()
+    {
+        using (var vorbisStream = new NAudio.Vorbis.VorbisWaveReader("C:/Users/26295/Music/LoveIsGone.ogg"))
+        using (var waveOut = new NAudio.Wave.WaveOutEvent())
+        {
+            waveOut.Init(vorbisStream);
+            waveOut.Play();
+
+            // wait here until playback stops or should stop
+        }
+
+        await Task.CompletedTask;
+    }
+}
